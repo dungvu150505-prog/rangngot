@@ -5,26 +5,176 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Một chút ngọt ngào gửi đi</title>
 
-  <!-- Google Fonts -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* 🌸 Tổng thể */
+    body {
+      font-family: 'EB Garamond', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(145deg, #fff7fa, #ffeef5);
+      color: #333;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* 🌺 Logo tròn */
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 14px rgba(255, 160, 180, 0.35);
+      animation: heartbeat 3s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.05); }
+      50% { transform: scale(1.1); }
+      75% { transform: scale(1.05); }
+    }
+
+    /* ✨ Slogan */
+    .slogan {
+      font-size: 1rem;
+      color: #d32f2f;
+      font-style: italic;
+      font-weight: 500;
+      opacity: 0.95;
+      margin-bottom: 24px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 💌 Thiệp chính */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: clamp(320px, 90vw, 480px);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 8px 28px rgba(255, 170, 200, 0.25);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #ffd6e6;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1.8s ease;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+      color: #e2528e;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0 0 22px;
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    /* 🌷 Nút và label */
+    .file-label, .upload-btn {
+      font-size: 1.05rem;
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: none;
+      background: #ff93b8;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(255, 122, 162, 0.25);
+      transition: all 0.3s ease;
+      font-family: 'EB Garamond', serif;
+      display: inline-block;
+      width: 80%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+
+    .file-label:hover, .upload-btn:hover {
+      background: #ff79a4;
+      transform: scale(1.05);
+    }
+
+    #result { margin-top: 20px; display: none; }
+    #receiverLink {
+      display: block;
+      margin: 10px auto;
+      color: #e2528e;
+      font-weight: 600;
+      word-wrap: break-word;
+      font-size: 0.95rem;
+    }
+    #qrCanvas { display: flex; justify-content: center; margin-top: 10px; }
+
+    /* 💗 Trái tim bay */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      width: 16px;
+      height: 16px;
+      background-color: #ff9ebd;
+      transform: rotate(45deg);
+      opacity: 0.8;
+      animation: floatUp 6s ease-in infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: #ff9ebd;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -8px; left: 0; }
+    .heart::after { left: -8px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 1; }
+      50% { transform: translateY(-150px) scale(1.2) rotate(45deg); opacity: 0.9; }
+      100% { transform: translateY(-250px) scale(0.9) rotate(45deg); opacity: 0; }
+    }
+
+    /* 📱 Responsive cho điện thoại */
+    @media (max-width: 480px) {
+      .logo { width: 90px; height: 90px; }
+      .card { padding: 24px 20px; }
+      h1 { font-size: 1.25rem; }
+      p { font-size: 1rem; }
+      .file-label, .upload-btn { font-size: 1rem; padding: 12px 18px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Logo -->
-  <img src="/logo.png" alt="Răng Ngọt Logo" class="logo">
+  <!-- 🍰 Logo + slogan -->
+  <img src="https://file.garden/aO0lFjCQS03opF7T/st.PNG" alt="Logo RangNgot" class="logo">
+  <div class="slogan">From RangNgot with Love 💞</div>
 
-  <!-- Sub text -->
-  <p class="subtitle">Một chút ngọt ngào gửi tới bạn 💝</p>
-
-  <!-- Upload card -->
+  <!-- 💌 Thiệp -->
   <div class="card">
-    <h2>Gửi lời chúc của bạn</h2>
-    <label for="audioFile" class="file-label">Chọn file âm thanh 🎵</label>
+    <h1>Gửi chút ngọt ngào của bạn 🎀</h1>
+    <p>Chọn lời chúc, bản ghi âm hay âm thanh đáng yêu để gửi đến người đặc biệt của bạn 💝</p>
+
+    <label for="audioFile" class="file-label">🎵 Chọn file âm thanh</label>
     <input type="file" id="audioFile" accept="audio/*" style="display:none;">
-    <button class="upload-btn" id="uploadBtn">📤 Tải lời chúc & tạo link</button>
+    <button class="upload-btn" id="uploadBtn">📤 Tải lên & tạo link</button>
 
     <div id="result">
       <a id="receiverLink" href="#" target="_blank"></a>
@@ -32,21 +182,23 @@
     </div>
   </div>
 
-  <!-- Hiệu ứng tim bay -->
+  <!-- 💗 Hiệu ứng tim bay -->
   <script>
-    for (let i = 0; i < 15; i++) {
+    setInterval(() => {
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 6 + Math.random() * 5 + 's';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.style.backgroundColor = `hsl(${340 + Math.random() * 20}, 90%, 75%)`;
       document.body.appendChild(heart);
-    }
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
   </script>
 
-  <!-- QRCodeJS -->
+  <!-- QR Code -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <!-- Upload Script -->
+  <!-- 📤 Xử lý upload -->
   <script>
     const uploadBtn = document.getElementById('uploadBtn');
     const fileInput = document.getElementById('audioFile');
@@ -90,7 +242,7 @@
       }
 
       uploadBtn.disabled = false;
-      uploadBtn.textContent = '📤 Tải lời chúc & tạo link';
+      uploadBtn.textContent = '📤 Tải lên & tạo link';
     });
   </script>
 </body>
