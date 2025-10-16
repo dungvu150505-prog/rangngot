@@ -2,121 +2,207 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lời chúc ngọt ngào 💌</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Một chút ngọt ngào gửi tới bạn 💝</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* 🌸 Tổng thể */
     body {
-      background: linear-gradient(135deg, #ffe6eb, #fff);
-      font-family: 'Poppins', sans-serif;
+      font-family: 'EB Garamond', serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      background: linear-gradient(145deg, #fff7fa, #ffeef5);
+      color: #333;
       overflow: hidden;
-      position: relative;
-    }
-
-    h1 {
-      color: #e91e63;
-      font-size: 2.4rem;
+      padding: 20px;
       text-align: center;
-      animation: fadeIn 1.5s ease-out;
     }
 
-    p {
-      font-size: 1.1rem;
-      color: #555;
-      text-align: center;
-      margin-top: 10px;
-      animation: fadeIn 2s ease-out;
-    }
-
-    #player {
-      margin-top: 25px;
-      width: 80%;
-      max-width: 400px;
-      outline: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    #btnPlay {
-      background-color: #ff4b77;
-      border: none;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-size: 1.1rem;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255,75,119,0.3);
-    }
-
-    #btnPlay:hover {
-      background-color: #ff2b5f;
-      transform: translateY(-2px);
-    }
-
-    .heart {
-      position: fixed;
-      bottom: 0;
-      width: 20px;
-      height: 20px;
-      background-color: pink;
-      transform: rotate(45deg);
-      animation: flyUp 5s linear forwards;
-      opacity: 0.8;
-    }
-
-    .heart::before, .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: pink;
+    /* 🌺 Logo tròn */
+    .logo {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 14px rgba(255, 160, 180, 0.35);
+      animation: heartbeat 3s ease-in-out infinite;
     }
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: -10px; top: 0; }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.05); }
+      50% { transform: scale(1.1); }
+      75% { transform: scale(1.05); }
+    }
 
-    @keyframes flyUp {
-      0% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
-      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    /* ✨ Slogan */
+    .slogan {
+      font-size: 1rem;
+      color: #d32f2f;
+      font-style: italic;
+      font-weight: 500;
+      opacity: 0.95;
+      margin-bottom: 24px;
+      animation: fadeIn 2s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(-8px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 💌 Thiệp chính */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: clamp(320px, 90vw, 480px);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 8px 28px rgba(255, 170, 200, 0.25);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #ffd6e6;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1.8s ease;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+      color: #e2528e;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0 0 22px;
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    /* 💕 Nút phát nhạc */
+    .play-btn {
+      font-size: 1.05rem;
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: none;
+      background: #ff93b8;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(255, 122, 162, 0.25);
+      transition: all 0.3s ease;
+      font-family: 'EB Garamond', serif;
+      width: 80%;
+      max-width: 300px;
+      margin: 10px auto 0;
+      display: block;
+    }
+
+    .play-btn:hover {
+      background: #ff79a4;
+      transform: scale(1.05);
+    }
+
+    audio { display: none; }
+
+    .note {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* 💗 Trái tim bay */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      width: 16px;
+      height: 16px;
+      background-color: #ff9ebd;
+      transform: rotate(45deg);
+      opacity: 0.8;
+      animation: floatUp 6s ease-in infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: #ff9ebd;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -8px; left: 0; }
+    .heart::after { left: -8px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 1; }
+      50% { transform: translateY(-150px) scale(1.2) rotate(45deg); opacity: 0.9; }
+      100% { transform: translateY(-250px) scale(0.9) rotate(45deg); opacity: 0; }
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 480px) {
+      .logo { width: 90px; height: 90px; }
+      .card { padding: 24px 20px; }
+      h1 { font-size: 1.25rem; }
+      p { font-size: 1rem; }
+      .play-btn { font-size: 1rem; padding: 12px 18px; }
     }
   </style>
 </head>
-
 <body>
-  <h1>💖 Một lời chúc ngọt ngào dành riêng cho bạn 💖</h1>
-  <p>Nhấn để nghe điều đặc biệt mà ai đó gửi đến bạn 🎵</p>
-  <audio id="player" controls></audio>
-  <button id="btnPlay">🎧 Nghe lời chúc</button>
+  <!-- 🍰 Logo + slogan -->
+  <img src="https://file.garden/aO0lFjCQS03opF7T/st.PNG" alt="Logo RangNgot" class="logo">
+  <div class="slogan">From RangNgot with Love 💞</div>
 
+  <!-- 💌 Thiệp -->
+  <div class="card">
+    <h1>Một chút ngọt ngào gửi tới bạn 🎀</h1>
+    <p>Đây là món quà nhỏ xinh mà ai đó đã chuẩn bị riêng cho bạn — nhấn nút dưới đây để nghe nhé 💝</p>
+
+    <audio id="player" preload="auto"></audio>
+    <button class="play-btn" id="btnPlay">🎧 Nghe lời chúc</button>
+    <div class="note">Nếu không tự phát, hãy bấm nút ở trên nhé</div>
+  </div>
+
+  <!-- 💗 Hiệu ứng tim bay -->
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const audioSrc = urlParams.get('audio');
+    // 🌸 Tạo hiệu ứng tim bay
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.style.backgroundColor = `hsl(${340 + Math.random() * 20}, 90%, 75%)`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+
+    // 💕 Xử lý phát nhạc
     const player = document.getElementById('player');
     const btnPlay = document.getElementById('btnPlay');
+    const urlParams = new URLSearchParams(window.location.search);
+    const audioUrl = urlParams.get('audio');
 
-    if (audioSrc) {
-      player.src = audioSrc;
+    if (audioUrl) {
+      player.src = audioUrl;
     } else {
-      alert('Không tìm thấy file âm thanh, hãy kiểm tra lại đường dẫn 💔');
+      alert("Không tìm thấy file âm thanh 😢");
     }
 
     btnPlay.addEventListener('click', () => {
       if (player.paused) {
         player.play().catch(() => {
-          alert('Trình duyệt chặn tự phát, bấm lại để nghe nhé 🎵');
+          alert('Trình duyệt chặn tự phát, bấm lại để phát nhé 🎵');
         });
         btnPlay.textContent = '⏸ Dừng lại';
       } else {
@@ -125,17 +211,6 @@
         btnPlay.textContent = '🎧 Nghe lời chúc';
       }
     });
-
-    // Hiệu ứng trái tim bay ngẫu nhiên
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.backgroundColor = `hsl(${340 + Math.random() * 20}, 90%, 75%)`;
-      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }, 800);
   </script>
 </body>
 </html>
