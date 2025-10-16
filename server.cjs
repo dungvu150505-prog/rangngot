@@ -4,8 +4,6 @@ const multer = require('multer');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000;
-
 // Cấu hình lưu file
 const storage = multer.diskStorage({
   destination: './uploads/',
@@ -25,4 +23,5 @@ app.post('/upload', upload.single('audio'), (req, res) => {
   res.json({ success: true, receiverUrl });
 });
 
-app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+const port = process.env.PORT || 10000;
+app.listen(port, () => console.log(`Server running at port ${port}`));
