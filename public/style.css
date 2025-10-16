@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #ffe6eb 0%, #fff3f6 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Logo nhịp tim */
+.logo {
+  width: 130px;
+  margin-top: 40px;
+  animation: heartbeat 2.5s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.02); }
+  50% { transform: scale(0.98); }
+  75% { transform: scale(1.01); }
+}
+
+/* Dòng chữ phụ */
+.subtitle {
+  font-family: 'Dancing Script', cursive;
+  color: #d14b7a;
+  font-size: 1.25rem;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* Thẻ upload */
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(210, 75, 122, 0.08);
+  padding: 25px 30px;
+  margin-top: 25px;
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* Tiêu đề trong thẻ */
+.card h2 {
+  color: #d14b7a;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+/* Nút chọn file */
+.file-label {
+  display: block;
+  background: #ffe1ec;
+  border-radius: 12px;
+  padding: 10px 0;
+  margin-bottom: 12px;
+  cursor: pointer;
+  color: #d14b7a;
+  transition: background 0.3s ease;
+}
+.file-label:hover {
+  background: #ffd0e3;
+}
+
+/* Nút upload */
+.upload-btn {
+  background: linear-gradient(90deg, #ff70a6, #ff94bf);
+  border: none;
+  color: white;
+  padding: 10px 0;
+  border-radius: 12px;
+  width: 100%;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+  transition: transform 0.3s ease;
+}
+.upload-btn:hover {
+  transform: scale(1.02);
+}
+
+/* Nền trái tim */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url('https://i.imgur.com/XXyVQGk.png');
+  background-size: cover;
+  animation: floatUp 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}

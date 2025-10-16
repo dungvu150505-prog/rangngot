@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nghe lời chúc của bạn</title>
+<style>
+body { font-family:sans-serif; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; margin:0; background:#fff0f5; }
+audio { margin-top:20px; width:90%; max-width:400px; }
+h1 { color:#e2528e; text-align:center; }
+</style>
+</head>
+<body>
+<h1>Lắng nghe lời chúc 💞</h1>
+<audio controls autoplay>
+  <source src="" id="audioPlayer">
+</audio>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const audioSrc = urlParams.get('audio');
+  if(audioSrc) document.getElementById('audioPlayer').src = audioSrc;
+</script>
+</body>
+</html>
