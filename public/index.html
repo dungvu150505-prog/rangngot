@@ -1,58 +1,30 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Một chút ngọt ngào gửi đi</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body {
-  font-family: 'EB Garamond', serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  background: linear-gradient(145deg, #fff7fa, #ffeef5);
-  color: #333;
-  overflow: hidden;
-}
-.card {
-  width: clamp(320px, 90vw, 520px);
-  padding: 36px;
-  border-radius: 24px;
-  box-shadow: 0 8px 28px rgba(255, 170, 200, 0.25);
-  background: rgba(255, 255, 255, 0.92);
-  text-align: center;
-  border: 1px solid #ffd6e6;
-  backdrop-filter: blur(6px);
-}
-.upload-btn {
-  font-size: 1.05rem;
-  padding: 14px 22px;
-  border-radius: 14px;
-  border: none;
-  background: #ff93b8;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(255, 122, 162, 0.25);
-  transition: all 0.3s ease;
-}
-.upload-btn:hover { background: #ff79a4; transform: scale(1.05); }
-#result { margin-top: 20px; display: none; }
-#receiverLink { display:block; margin:10px auto; color:#e2528e; font-weight:600; word-wrap:break-word; }
-#qrCanvas { display:flex; justify-content:center; margin-top:10px; }
-canvas { width:100px !important; height:100px !important; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Một chút ngọt ngào gửi đi</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="card">
-    <h1>Một chút ngọt ngào gửi tới bạn</h1>
-    <p>Hãy gửi lời chúc của bạn, chúng mình sẽ gửi đến cho người ấy 🎀</p>
+  <!-- Logo -->
+  <img src="/logo.png" alt="Răng Ngọt Logo" class="logo">
 
-    <button class="upload-btn" id="uploadBtn">📤 Tải lời chúc & tạo link</button>
+  <!-- Sub text -->
+  <p class="subtitle">Một chút ngọt ngào gửi tới bạn 💝</p>
+
+  <!-- Upload card -->
+  <div class="card">
+    <h2>Gửi lời chúc của bạn</h2>
+    <label for="audioFile" class="file-label">Chọn file âm thanh 🎵</label>
     <input type="file" id="audioFile" accept="audio/*" style="display:none;">
+    <button class="upload-btn" id="uploadBtn">📤 Tải lời chúc & tạo link</button>
 
     <div id="result">
       <a id="receiverLink" href="#" target="_blank"></a>
@@ -60,7 +32,21 @@ canvas { width:100px !important; height:100px !important; }
     </div>
   </div>
 
+  <!-- Hiệu ứng tim bay -->
+  <script>
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 6 + Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- QRCodeJS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Upload Script -->
   <script>
     const uploadBtn = document.getElementById('uploadBtn');
     const fileInput = document.getElementById('audioFile');
@@ -68,42 +54,43 @@ canvas { width:100px !important; height:100px !important; }
     const receiverLink = document.getElementById('receiverLink');
     const qrCanvas = document.getElementById('qrCanvas');
 
-    uploadBtn.addEventListener('click', ()=> fileInput.click());
+    uploadBtn.addEventListener('click', () => fileInput.click());
 
-    fileInput.addEventListener('change', async ()=>{
-      if(!fileInput.files.length) return;
+    fileInput.addEventListener('change', async () => {
+      if (!fileInput.files.length) return;
+      uploadBtn.disabled = true;
+      uploadBtn.textContent = 'Đang xử lý...';
 
-      uploadBtn.disabled=true; uploadBtn.textContent='Đang xử lý...';
       const formData = new FormData();
       formData.append('audio', fileInput.files[0]);
 
-      try{
-        const response = await fetch('/upload',{method:'POST', body:formData});
+      try {
+        const response = await fetch('/upload', { method: 'POST', body: formData });
         const data = await response.json();
 
-        if(data.success){
+        if (data.success) {
           const fullURL = `${window.location.origin}${data.receiverUrl}`;
           receiverLink.textContent = fullURL;
           receiverLink.href = fullURL;
 
-          qrCanvas.innerHTML='';
-          new QRCode(qrCanvas,{
+          qrCanvas.innerHTML = '';
+          new QRCode(qrCanvas, {
             text: fullURL,
-            width:100,
-            height:100,
-            colorDark:'#f4cde0',
-            colorLight:'#fff7fa'
+            width: 100,
+            height: 100,
+            colorDark: '#f4cde0',
+            colorLight: '#fff7fa'
           });
 
-          resultBox.style.display='block';
+          resultBox.style.display = 'block';
         } else alert('Lỗi khi upload file.');
-      } catch(err){
+      } catch (err) {
         console.error(err);
         alert('Đã xảy ra lỗi khi kết nối máy chủ.');
       }
 
-      uploadBtn.disabled=false;
-      uploadBtn.textContent='📤 Tải lời chúc & tạo link';
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = '📤 Tải lời chúc & tạo link';
     });
   </script>
 </body>
