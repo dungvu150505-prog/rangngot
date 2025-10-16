@@ -2,8 +2,22 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+const cors = require('cors');
 
 const app = express();
+
+// Bật CORS (nếu cần)
+app.use(cors({
+  origin: '*', // hoặc giới hạn domain frontend của bạn
+}));
+
+// Đảm bảo thư mục uploads tồn tại
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
 // Cấu hình lưu file
 const storage = multer.diskStorage({
   destination: './uploads/',
@@ -12,7 +26,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Phục vụ public folder
+// Phục vụ static
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
 
@@ -23,5 +37,6 @@ app.post('/upload', upload.single('audio'), (req, res) => {
   res.json({ success: true, receiverUrl });
 });
 
-const PORT = process.env.PORT || 10000; // fallback nếu chạy local
+// Render port
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running at port ${PORT}`));
