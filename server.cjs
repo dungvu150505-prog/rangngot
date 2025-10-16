@@ -23,5 +23,5 @@ app.post('/upload', upload.single('audio'), (req, res) => {
   res.json({ success: true, receiverUrl });
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running at port ${port}`));
+const PORT = process.env.PORT || 10000; // fallback nếu chạy local
+app.listen(PORT, () => console.log(`Server running at port ${PORT}`));
