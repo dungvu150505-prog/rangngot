@@ -23,5 +23,5 @@ app.post('/upload', upload.single('audio'), (req, res) => {
   res.json({ success: true, receiverUrl });
 });
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Server running at port ${port}`));
